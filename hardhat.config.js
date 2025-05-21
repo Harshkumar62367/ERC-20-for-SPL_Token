@@ -17,27 +17,6 @@ module.exports = {
       },
     ],
   },
-  etherscan: {
-    apiKey: "",
-    customChains: [
-      {
-        network: "neonevm",
-        chainId: 245022926,
-        urls: {
-          apiURL: "https://neon-devnet.blockscout.com/api",
-          browserURL: "https://neon-devnet.blockscout.com",
-        },
-      },
-      {
-        network: "neonevm",
-        chainId: 245022934,
-        urls: {
-          apiURL: "https://neon.blockscout.com/api",
-          browserURL: "https://neon.blockscout.com",
-        },
-      },
-    ],
-  },
   networks: {
     neondevnet: {
       url: "https://devnet.neonevm.org",
