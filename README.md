@@ -67,4 +67,5 @@ Below are the key contract addresses and transactions from the successful deploy
 ### Token Contract
 
 - **NeonEVM_MYTOKEN Address**: [`0xeD7A943708a5ee4482Ae8fEa4A04f1c11De09d74`](https://neon-devnet.blockscout.com/address/0xeD7A943708a5ee4482Ae8fEa4A04f1c11De09d74)
-- **Token Mint**: 0x4cf9d92182bfe10eecfbbeba6806046d3468d2005ea6c9693a7a2656c37320a9 
+- **Token Mint**: 0x4cf9d92182bfe10eecfbbeba6806046d3468d2005ea6c9693a7a2656c37320a9
+- **Metamask Neon Address**: [`0xd12A585952dea511B17299D10B5059Cbd75fE64A`](https://neon-devnet.blockscout.com/address/0xd12A585952dea511B17299D10B5059Cbd75fE64A)
