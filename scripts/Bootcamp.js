@@ -8,6 +8,7 @@ const {
 const { config } = require('./config');
 
 async function main() {
+    // Initialize connection to Solana network and get user's keypair
     const SOLANA_NODE = config.SOLANA_NODE;
     const DEVNET_ERC20ForSPL_FACTORY = "0xF6b17787154C418d5773Ea22Afc87A95CAA3e957";
     let solanaTx;
@@ -19,11 +20,12 @@ async function main() {
     );
     const [user1] = await ethers.getSigners();
 
+    // Get contract factories and attach to existing factory contract
     const ERC20ForSplFactoryContract = await ethers.getContractFactory("ERC20ForSplFactory");
     const ERC20ForSplMintableContract = await ethers.getContractFactory("ERC20ForSplMintable");
     const ERC20ForSplFactory = ERC20ForSplFactoryContract.attach(DEVNET_ERC20ForSPL_FACTORY);
 
-    // Deploy ERC20ForSplMintable contract
+    // Create new ERC20 token with custom name, symbol, and decimals
     tx = await ERC20ForSplFactory.createErc20ForSplMintable(
         "NeonEVM_MYTOKEN" + Date.now().toString(),
         "NBMT",
@@ -32,6 +34,7 @@ async function main() {
     );
     await tx.wait(1);
 
+    // Get the address of newly created token contract and attach to it
     const ERC20ForSPLMintableAddress = await ERC20ForSplFactory.allErc20ForSpl(
         parseInt((await ERC20ForSplFactory.allErc20ForSplLength()).toString()) - 1
     );
@@ -40,13 +43,13 @@ async function main() {
     const tokenMint = await ERC20ForSplMintable.tokenMint();
     console.log(tokenMint, 'tokenMint');
 
-    // mint 1 token to user
+    // Mint initial supply of 1 token to the user
     tx = await ERC20ForSplMintable.mint(user1.address, 1 * 10 ** 9);
     await tx.wait(1);
 
 }
 
 main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
+    console.error(error);
+    process.exitCode = 1;
 });

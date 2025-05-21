@@ -3,6 +3,8 @@ pragma solidity >=0.5.12;
 
 import './erc20_for_spl.sol';
 
+// Factory contract for creating ERC20 tokens that are compatible with Solana's SPL token standard
+// This contract manages the creation and tracking of ERC20-for-SPL tokens
 contract ERC20ForSplFactory {
 
     mapping(bytes32 => address) public getErc20ForSpl;
@@ -14,6 +16,7 @@ contract ERC20ForSplFactory {
         return allErc20ForSpl.length;
     }
 
+    // Creates a new ERC20-for-SPL token with an existing Solana mint account
     function createErc20ForSpl(bytes32 _mint) public returns (address erc20spl) {
 
         require(getErc20ForSpl[_mint] == address(0), 'ERC20 SPL Factory: ERC20_SPL_EXISTS');
@@ -32,6 +35,8 @@ contract ERC20ForSplFactory {
         emit ERC20ForSplCreated(_mint, erc20spl, allErc20ForSpl.length);
     }
 
+    // Creates a new mintable ERC20-for-SPL token with custom name, symbol, and decimals
+    // This function also sets up the minting authority for the token
     function createErc20ForSplMintable(string memory _name, string memory _symbol, uint8 _decimals, address _mint_authority) public returns (address erc20spl) {
 
         bytes memory bytecode = type(ERC20ForSplMintable).creationCode;
